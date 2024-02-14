@@ -14,37 +14,37 @@
  * Shim to create missing function calls in the ingenic libimp library
  */
 
-#define DEBUG 1  // Set this to 1 to enable debug output or 0 to disable
+#define DEBUG 0  // Set this to 1 to enable debug output or 0 to disable
 
 #if DEBUG
-#define DEBUG_PRINT(...) printf(__VA_ARGS__)
+#define DEBUG_PRINT(...) fprintf(__VA_ARGS__)
 #else
 #define DEBUG_PRINT(...) (void)0
 #endif
 
 void __pthread_register_cancel(void *buf) {
-    fprintf(stderr, "[WARNING] Called __pthread_register_cancel. This is a shim and does nothing.\n");
+    DEBUG_PRINT(stderr, "[WARNING] Called __pthread_register_cancel. This is a shim and does nothing.\n");
 }
 
 void __pthread_unregister_cancel(void *buf) {
-    fprintf(stderr, "[WARNING] Called __pthread_unregister_cancel. This is a shim and does nothing.\n");
+    DEBUG_PRINT(stderr, "[WARNING] Called __pthread_unregister_cancel. This is a shim and does nothing.\n");
 }
 
 void __assert(const char *msg, const char *file, int line) {
-    fprintf(stderr, "Assertion failed: %s (%s: %d)\n", msg, file, line);
+    DEBUG_PRINT(stderr, "Assertion failed: %s (%s: %d)\n", msg, file, line);
     abort();
 }
 
 int __fgetc_unlocked(FILE *stream) {
-    fprintf(stderr, "[WARNING] Called __fgetc_unlocked. This is a shim and does nothing.\n");
+    DEBUG_PRINT(stderr, "[WARNING] Called __fgetc_unlocked. This is a shim and does nothing.\n");
     return fgetc(stream);
 }
 
 void __ctype_b(void) {
-    fprintf(stderr, "[WARNING] Called __ctype_b. This is a shim and does nothing.\n");
+    DEBUG_PRINT(stderr, "[WARNING] Called __ctype_b. This is a shim and does nothing.\n");
 }
 void __ctype_tolower(void) {
-    fprintf(stderr, "[WARNING] Called __ctype_tolower. This is a shim and does nothing.\n");
+    DEBUG_PRINT(stderr, "[WARNING] Called __ctype_tolower. This is a shim and does nothing.\n");
 }
 
 

@@ -3,7 +3,8 @@ CONFIG_MUSL_BUILD=y
 CROSS_COMPILE ?= mipsel-linux-
 
 CC = $(CROSS_COMPILE)gcc
-CPLUSPLUS = $(CROSS_COMPILE)g++
+## Disable to avoid libstdc++.so deps
+# CPLUSPLUS = $(CROSS_COMPILE)g++
 LD = $(CROSS_COMPILE)ld
 AR = $(CROSS_COMPILE)ar cr
 STRIP = $(CROSS_COMPILE)strip
@@ -52,99 +53,99 @@ SAMPLES = sample-Encoder-video \
 all: 	$(SAMPLES)
 
 sample-Ai: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Ai.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
 sample-Ao: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Ao.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
 sample-Ai-AEC: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Ai-AEC.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
 sample-Ai-Ref: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Ai-Ref.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
 sample-dmic: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-dmic.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
 sample-dmic-aec: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-dmic-aec.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
 sample-dmic-ref: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-dmic-ref.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
 sample-Encoder-video: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Encoder-video.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Encoder-jpeg: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Encoder-jpeg.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Encoder-yuv: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-Encoder-yuv.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Encoder-h264-jpeg: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Encoder-h264-jpeg.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-OSD: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-OSD.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Audio: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Audio.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
 sample-Setfps: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Setfps.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-ISP-flip: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-ISP-flip.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Encoder-video-IVS-move: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Encoder-video-IVS-move.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Encoder-h264-IVS-base-move: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Encoder-h264-IVS-base-move.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Change-Resolution: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Change-Resolution.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Snap-YUV: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Snap-YUV.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Encoder-video-IVS-exalgo: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Encoder-video-IVS-exalgo.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Framesource: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Framesource.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-EXTFS-Encoder-h264: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-EXTFS-Encoder-h264.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-EXTFS-Encoder-h264-rgba: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-EXTFS-Encoder-h264-rgba.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 sample-Framesource-algo: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o sample-Framesource-algo.o musl_shim.o
-	$(CPLUSPLUS) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
 %.o:%.c sample-common.h

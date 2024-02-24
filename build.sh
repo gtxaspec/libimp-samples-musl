@@ -9,7 +9,7 @@ else
 fi
 
 # Define the list of base directories
-folders=("T20" "T21" "T23" "T30" "T31")
+folders=("A1" "T20" "T21" "T23" "T30" "T31" "T40" "T41")
 
 # Iterate over each folder
 for folder in "${folders[@]}"; do

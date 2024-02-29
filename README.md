@@ -1,5 +1,5 @@
 samples compatible with musl
 
-run `build.sh` to compile ALL samples for all platforms
+run `build.sh --make` to compile ALL samples for all platforms
 
-`build.sh -clean` will distclean everything
+`build.sh --clean` will distclean everything

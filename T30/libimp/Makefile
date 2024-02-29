@@ -53,97 +53,97 @@ SAMPLES = sample-Encoder-video \
 
 all: 	$(SAMPLES)
 
-sample-Encoder-video: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Encoder-video.o
+sample-Encoder-video: sample-common.o ../../common/musl_shim.o sample-Encoder-video.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-OSD: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-OSD.o
+sample-OSD: sample-common.o ../../common/musl_shim.o sample-OSD.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Ai: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-Ai.o ../../common/musl_shim.o
+sample-Ai: sample-Ai.o ../../common/musl_shim.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-Ao: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-Ao.o ../../common/musl_shim.o
+sample-Ao: sample-Ao.o ../../common/musl_shim.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-Ai-AEC: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-Ai-AEC.o ../../common/musl_shim.o
+sample-Ai-AEC: sample-Ai-AEC.o ../../common/musl_shim.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-Ai-Ref: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-Ai-Ref.o ../../common/musl_shim.o
+sample-Ai-Ref: sample-Ai-Ref.o ../../common/musl_shim.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-Audio: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Audio.o
+sample-Audio: sample-common.o ../../common/musl_shim.o sample-Audio.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-dmic: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-dmic.o
+sample-dmic: sample-common.o ../../common/musl_shim.o sample-dmic.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
-sample-dmic-aec: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-dmic-aec.o
+sample-dmic-aec: sample-common.o ../../common/musl_shim.o sample-dmic-aec.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
-sample-dmic-ref: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-dmic-ref.o
+sample-dmic-ref: sample-common.o ../../common/musl_shim.o sample-dmic-ref.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-Setfps: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Setfps.o
+sample-Setfps: sample-common.o ../../common/musl_shim.o sample-Setfps.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-ISP-flip: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-ISP-flip.o
+sample-ISP-flip: sample-common.o ../../common/musl_shim.o sample-ISP-flip.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Decoder-jpeg: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Decoder-jpeg.o
+sample-Decoder-jpeg: sample-common.o ../../common/musl_shim.o sample-Decoder-jpeg.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Encoder-video-IVS-move: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Encoder-video-IVS-move.o
+sample-Encoder-video-IVS-move: sample-common.o ../../common/musl_shim.o sample-Encoder-video-IVS-move.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Change-Resolution: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-Change-Resolution-Common.o sample-Change-Resolution.o ../../common/musl_shim.o
+sample-Change-Resolution: sample-Change-Resolution-Common.o sample-Change-Resolution.o ../../common/musl_shim.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Snap-Raw: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Snap-Raw.o
+sample-Snap-Raw: sample-common.o ../../common/musl_shim.o sample-Snap-Raw.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Encoder-video-IVS-exalgo: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Encoder-video-IVS-exalgo.o
+sample-Encoder-video-IVS-exalgo: sample-common.o ../../common/musl_shim.o sample-Encoder-video-IVS-exalgo.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Framesource: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Framesource.o
+sample-Framesource: sample-common.o ../../common/musl_shim.o sample-Framesource.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Encoder-jpeg: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Encoder-jpeg.o
+sample-Encoder-jpeg: sample-common.o ../../common/musl_shim.o sample-Encoder-jpeg.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Capture-nv12: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Capture-nv12.o
+sample-Capture-nv12: sample-common.o ../../common/musl_shim.o sample-Capture-nv12.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-EXTFS-Encoder-h264-bgra: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-EXTFS-Encoder-h264-bgra.o
+sample-EXTFS-Encoder-h264-bgra: sample-common.o ../../common/musl_shim.o sample-EXTFS-Encoder-h264-bgra.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-EXTFS-Encoder-h264: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-EXTFS-Encoder-h264.o
+sample-EXTFS-Encoder-h264: sample-common.o ../../common/musl_shim.o sample-EXTFS-Encoder-h264.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Encoder-video: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Encoder-video.o
+sample-Encoder-video: sample-common.o ../../common/musl_shim.o sample-Encoder-video.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Framesource-algo: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Framesource-algo.o
+sample-Framesource-algo: sample-common.o ../../common/musl_shim.o sample-Framesource-algo.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 

@@ -34,20 +34,20 @@ SAMPLES = sample-keyevent \
 
 all: 	$(SAMPLES)
 
-sample-keyevent: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-keyevent.o
+sample-keyevent: ../../common/musl_shim.o sample-keyevent.o
 	$(CC)  $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-alarm: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-alarm.o
+sample-alarm: ../../common/musl_shim.o sample-alarm.o
 	$(CC)  $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
-sample-led: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-led.o
+sample-led: ../../common/musl_shim.o sample-led.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
-sample-pir: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-pir.o
+sample-pir: ../../common/musl_shim.o sample-pir.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
-sample-cipher: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-cipher.o
+sample-cipher: ../../common/musl_shim.o sample-cipher.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
 %.o:%.c

@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # Check if the -clean flag is set
-if [[ "$1" == "-clean" ]]; then
+if [[ "$1" == "" ]]; then
+	echo "run with --make or --clean"
+	exit 0
+elif [[ "$1" == "--clean" ]]; then
 	MAKE_CMD="make distclean"
 	rm -f common/musl_shim.o
-else
+elif [[ "$1" == "--make" ]]; then
 	MAKE_CMD="make"
 fi
 

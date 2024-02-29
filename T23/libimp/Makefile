@@ -51,95 +51,95 @@ SAMPLES = sample-Encoder-video \
 
 all: 	$(SAMPLES)
 
-sample-Ai: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Ai.o
+sample-Ai: ../../common/musl_shim.o sample-Ai.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-Ao: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Ao.o
+sample-Ao: ../../common/musl_shim.o sample-Ao.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-Ai-AEC: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Ai-AEC.o
+sample-Ai-AEC: ../../common/musl_shim.o sample-Ai-AEC.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-Ai-Ref: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Ai-Ref.o
+sample-Ai-Ref: ../../common/musl_shim.o sample-Ai-Ref.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-Encoder-video: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Encoder-video.o
+sample-Encoder-video: ../../common/musl_shim.o sample-Encoder-video.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Encoder-jpeg: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Encoder-jpeg.o
+sample-Encoder-jpeg: ../../common/musl_shim.o sample-Encoder-jpeg.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Encoder-h264-jpeg: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Encoder-h264-jpeg.o
+sample-Encoder-h264-jpeg: ../../common/musl_shim.o sample-Encoder-h264-jpeg.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Encoder-Double-Ivdc: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Encoder-Double-Ivdc.o
+sample-Encoder-Double-Ivdc: ../../common/musl_shim.o sample-Encoder-Double-Ivdc.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-OSD: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-OSD.o
+sample-OSD: ../../common/musl_shim.o sample-OSD.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-IspOsd: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-IspOsd.o
+sample-IspOsd: ../../common/musl_shim.o sample-IspOsd.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Audio: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Audio.o
+sample-Audio: ../../common/musl_shim.o sample-Audio.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
 	$(STRIP) $@
 
-sample-Setfps: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Setfps.o
+sample-Setfps: ../../common/musl_shim.o sample-Setfps.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-ISP-flip: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-ISP-flip.o
+sample-ISP-flip: ../../common/musl_shim.o sample-ISP-flip.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Decoder-jpeg: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Decoder-jpeg.o
+sample-Decoder-jpeg: ../../common/musl_shim.o sample-Decoder-jpeg.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-IVS-move: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-IVS-move.o
+sample-IVS-move: ../../common/musl_shim.o sample-IVS-move.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-IVS-unbind-move: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-IVS-unbind-move.o
+sample-IVS-unbind-move: ../../common/musl_shim.o sample-IVS-unbind-move.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-IVS-base-move: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-IVS-base-move.o
+sample-IVS-base-move: ../../common/musl_shim.o sample-IVS-base-move.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Change-Resolution: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Change-Resolution.o
+sample-Change-Resolution: ../../common/musl_shim.o sample-Change-Resolution.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Snap-YUV: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Snap-YUV.o
+sample-Snap-YUV: ../../common/musl_shim.o sample-Snap-YUV.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Framesource: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Framesource.o
+sample-Framesource: ../../common/musl_shim.o sample-Framesource.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-EXTFS-Encoder-h264: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-EXTFS-Encoder-h264.o
+sample-EXTFS-Encoder-h264: ../../common/musl_shim.o sample-EXTFS-Encoder-h264.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-EXTFS-Encoder-h264-rgba: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-EXTFS-Encoder-h264-rgba.o
+sample-EXTFS-Encoder-h264-rgba: ../../common/musl_shim.o sample-EXTFS-Encoder-h264-rgba.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-Soft-photosensitive: $(SDK_LIB_DIR)/libimp.a $(SDK_LIB_DIR)/libalog.a sample-common.o ../../common/musl_shim.o sample-Soft-photosensitive.o
+sample-Soft-photosensitive: ../../common/musl_shim.o sample-Soft-photosensitive.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 

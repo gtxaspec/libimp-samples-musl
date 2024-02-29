@@ -37,32 +37,32 @@ SAMPLES = sample-keyevent \
 
 all: 	$(SAMPLES)
 
-sample-keyevent: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-keyevent.o
+sample-keyevent: ../../common/musl_shim.o sample-keyevent.o
 	$(CC)  $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 	$(STRIP) $@
 
-sample-alarm: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-alarm.o
+sample-alarm: ../../common/musl_shim.o sample-alarm.o
 	$(CC)  $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
-sample-led: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-led.o
+sample-led: ../../common/musl_shim.o sample-led.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
-sample-pir: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-pir.o
+sample-pir: ../../common/musl_shim.o sample-pir.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
-sample-cipher: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-cipher.o
+sample-cipher: ../../common/musl_shim.o sample-cipher.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
-sample-chipid: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-chipid.o
+sample-chipid: ../../common/musl_shim.o sample-chipid.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
-sample-adc: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-adc.o
+sample-adc: ../../common/musl_shim.o sample-adc.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
-sample-suadc: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-suadc.o
+sample-suadc: ../../common/musl_shim.o sample-suadc.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
-sample-wdt: $(SDK_LIB_DIR)/libsysutils.a $(SDK_LIB_DIR)/libalog.a ../../common/musl_shim.o sample-wdt.o
+sample-wdt: ../../common/musl_shim.o sample-wdt.o
 	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
 
 

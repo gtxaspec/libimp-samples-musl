@@ -49,6 +49,15 @@ for folder in "${folders[@]}"; do
 		echo "libsysutils directory does not exist in $folder"
 	fi
 
+	# libivs_inf
+	if [ -d "libivs_inf" ]; then
+		pushd "libivs_inf"
+		$MAKE_CMD
+		popd # Return from libivs_inf
+	else
+		echo "libivs_inf directory does not exist in $folder"
+	fi
+
 	popd # Return to the starting directory
 done
 

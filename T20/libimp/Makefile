@@ -9,11 +9,7 @@ STRIP = $(CROSS_COMPILE)strip
 
 CFLAGS = $(INCLUDES) -O2 -Wall -march=mips32r2
 
-ifeq ($(CONFIG_MUSL_BUILD), y)
-	SDK_LIB_DIR = ../lib/uclibc
-else
-	SDK_LIB_DIR = ../lib/glibc
-endif
+SDK_LIB_DIR = ../lib/uclibc
 
 SDK_INC_DIR = ../include
 

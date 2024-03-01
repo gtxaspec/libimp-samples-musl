@@ -4,6 +4,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <imp/imp_log.h>
 #include <imp/imp_common.h>
 #include <imp/imp_system.h>
@@ -59,11 +60,11 @@ int main(int argc, char *argv[])
 		memset(&ldc, 0, sizeof(IMPISPLDCAttr));
 		IMP_ISP_LDC_GetAttr(IMPVI_MAIN, &ldc);
 
-		ldc.cattr[0].enable = IMPISP_OPS_MODE_ENABLE;
+//		ldc.cattr[0].enable = IMPISP_OPS_MODE_ENABLE;
 		ldc.cattr[0].prioy = IMPISP_LDC_PRIOY_FIRST;
 		memcpy(&ldc.cattr[0].params, &ldc_default_params[11], sizeof(IMPISPLDCParams));
 
-		ldc.cattr[1].enable = IMPISP_OPS_MODE_ENABLE;
+//		ldc.cattr[1].enable = IMPISP_OPS_MODE_ENABLE;
 		ldc.cattr[1].prioy = IMPISP_LDC_PRIOY_FIRST;
 		memcpy(&ldc.cattr[1].params, &ldc_default_params[2], sizeof(IMPISPLDCParams));
 		IMP_ISP_LDC_SetAttr(IMPVI_MAIN, &ldc);

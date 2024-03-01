@@ -5,6 +5,7 @@ all:
 	@cd vdec;	make
 	@cd audio;	make
 	@cd tde;	make
+	@cd other;  make
 
 clean:
 	@cd fb;		make clean
@@ -13,6 +14,8 @@ clean:
 	@cd vdec;	make clean
 	@cd audio;	make clean
 	@cd tde;	make clean
+	@cd other;  make clean
+
 distclean:
 	@cd fb;		make distclean
 	@cd vo;		make distclean
@@ -20,3 +23,4 @@ distclean:
 	@cd vdec;	make distclean
 	@cd audio;	make distclean
 	@cd tde;	make distclean
+	@cd other;  make distclean

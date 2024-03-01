@@ -19,118 +19,24 @@ endif
 
 SDK_INC_DIR = ../include
 
-INCLUDES = -I$(SDK_INC_DIR)
+INCLUDES := -I$(SDK_INC_DIR)
 
-LIBS = $(SDK_LIB_DIR)/libimp.so $(SDK_LIB_DIR)/libalog.so
+LIBS := $(SDK_LIB_DIR)/libimp.so $(SDK_LIB_DIR)/libalog.so -lpthread -lm -lrt -ldl
 
 LDFLAG += -Wl,-gc-sections
 
-SAMPLES = sample-Encoder-video \
-	sample-OSD \
-	sample-Audio \
-	sample-Ai \
-	sample-Ao \
-	sample-Ai-AEC \
-	sample-Ai-Ref \
-	sample-Setfps \
-	sample-ISP-flip \
-	sample-Encoder-jpeg \
-	sample-Encoder-h264-jpeg \
-	sample-Decoder-jpeg \
-	sample-Encoder-video-IVS-move \
-	sample-Encoder-h264-IVS-base-move\
-	sample-Change-Resolution \
-	sample-Snap-YUV \
-	sample-Encoder-video-IVS-exalgo \
-	sample-Framesource \
-	sample-EXTFS-Encoder-h264 \
-	sample-EXTFS-Encoder-h264-rgba \
-	sample-Framesource-algo \
+COMMON_SRC := sample-common.o
+COMMON_OBJ := $(COMMON_SRC:%.c=%.o) ../../common/musl_shim.o
+
+SAMPLES_SRC := $(filter-out sample-common.c, $(wildcard *.c))
+SAMPLES_OBJ := $(SAMPLES_SRC:%.c=%.o)
+
+SAMPLES := $(SAMPLES_OBJ:%.o=%)
 
 all: 	$(SAMPLES)
 
-sample-Ai: sample-common.o ../../common/musl_shim.o sample-Ai.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
-	$(STRIP) $@
-
-sample-Ao: sample-common.o ../../common/musl_shim.o sample-Ao.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
-	$(STRIP) $@
-
-sample-Ai-AEC: sample-common.o ../../common/musl_shim.o sample-Ai-AEC.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
-	$(STRIP) $@
-
-sample-Ai-Ref: sample-common.o ../../common/musl_shim.o sample-Ai-Ref.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
-	$(STRIP) $@
-
-sample-Encoder-video: sample-common.o ../../common/musl_shim.o sample-Encoder-video.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Encoder-jpeg: sample-common.o ../../common/musl_shim.o sample-Encoder-jpeg.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Encoder-h264-jpeg: sample-common.o ../../common/musl_shim.o sample-Encoder-h264-jpeg.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-OSD: sample-common.o ../../common/musl_shim.o sample-OSD.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Audio: sample-common.o ../../common/musl_shim.o sample-Audio.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt -ldl
-	$(STRIP) $@
-
-sample-Setfps: sample-common.o ../../common/musl_shim.o sample-Setfps.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-ISP-flip: sample-common.o ../../common/musl_shim.o sample-ISP-flip.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Decoder-jpeg: sample-common.o ../../common/musl_shim.o sample-Decoder-jpeg.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Encoder-video-IVS-move: sample-common.o ../../common/musl_shim.o sample-Encoder-video-IVS-move.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Encoder-h264-IVS-base-move: sample-common.o ../../common/musl_shim.o sample-Encoder-h264-IVS-base-move.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Change-Resolution: sample-common.o ../../common/musl_shim.o sample-Change-Resolution.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Snap-YUV: sample-common.o ../../common/musl_shim.o sample-Snap-YUV.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Encoder-video-IVS-exalgo: sample-common.o ../../common/musl_shim.o sample-Encoder-video-IVS-exalgo.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Framesource: sample-common.o ../../common/musl_shim.o sample-Framesource.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-EXTFS-Encoder-h264: sample-common.o ../../common/musl_shim.o sample-EXTFS-Encoder-h264.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-EXTFS-Encoder-h264-rgba: sample-common.o ../../common/musl_shim.o sample-EXTFS-Encoder-h264-rgba.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-	$(STRIP) $@
-
-sample-Framesource-algo: sample-common.o ../../common/musl_shim.o sample-Framesource-algo.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+$(SAMPLES):%:%.o $(COMMON_OBJ)
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS)
 	$(STRIP) $@
 
 %.o:%.c sample-common.h

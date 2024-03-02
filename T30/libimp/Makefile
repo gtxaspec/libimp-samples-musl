@@ -1,5 +1,3 @@
-CONFIG_MUSL_BUILD=y
-
 CROSS_COMPILE ?= mipsel-linux-
 
 CC = $(CROSS_COMPILE)gcc

@@ -1,5 +1,3 @@
-CONFIG_MUSL_BUILD=y
-
 CROSS_COMPILE ?= mipsel-linux-
 
 CC = $(CROSS_COMPILE)gcc
@@ -15,50 +13,24 @@ SDK_LIB_DIR = ../lib/uclibc
 
 SDK_INC_DIR = ../include
 
-INCLUDES = -I$(SDK_INC_DIR)
+INCLUDES := -I$(SDK_INC_DIR)
 
-LIBS =	$(SDK_LIB_DIR)/libsysutils.so $(SDK_LIB_DIR)/libalog.so
+LIBS := $(SDK_LIB_DIR)/libsysutils.so $(SDK_LIB_DIR)/libalog.so
 
 LDFLAG += -Wl,-gc-sections
 
-SAMPLES = sample-keyevent \
-	sample-alarm \
-	sample-led \
-	sample-pir \
-	sample-chipid \
-	sample-adc \
-	sample-su_adc \
-	sample-wdt \
+COMMON_OBJ := ../../common/musl_shim.o
+
+SAMPLES_SRC := $(filter-out sample-common.c, $(wildcard *.c))
+SAMPLES_OBJ := $(SAMPLES_SRC:%.c=%.o)
+
+SAMPLES := $(SAMPLES_OBJ:%.o=%)
 
 all: 	$(SAMPLES)
 
-sample-keyevent: ../../common/musl_shim.o sample-keyevent.o
-	$(CC)  $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
+$(SAMPLES):%:%.o $(COMMON_OBJ)
+	$(CC) $(LDFLAG) -o $@ $^ $(LIBS)
 	$(STRIP) $@
-
-sample-alarm: ../../common/musl_shim.o sample-alarm.o
-	$(CC)  $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-
-sample-led: ../../common/musl_shim.o sample-led.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-
-sample-pir: ../../common/musl_shim.o sample-pir.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-
-sample-chipid: ../../common/musl_shim.o sample-chipid.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-
-sample-adc: ../../common/musl_shim.o sample-adc.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-
-sample-su_adc: ../../common/musl_shim.o sample-su_adc.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-
-sample-wdt: ../../common/musl_shim.o sample-wdt.o
-	$(CC) $(LDFLAG) -o $@ $^ $(LIBS) -lpthread -lm -lrt
-
-%.o:%.c
-	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
 	rm -f *.o *~

@@ -1,5 +1,3 @@
-CONFIG_MUSL_BUILD=y
-
 CROSS_COMPILE ?= mipsel-linux-
 
 CC = $(CROSS_COMPILE)gcc
@@ -15,7 +13,7 @@ SDK_INC_DIR = ../include
 
 INCLUDES := -I$(SDK_INC_DIR)
 
-LIBS := $(SDK_LIB_DIR)/libimp.so $(SDK_LIB_DIR)/libalog.so -lpthread -lm -lrt -ldl
+LIBS := $(SDK_LIB_DIR)/libimp.so $(SDK_LIB_DIR)/libalog.so
 
 LDFLAGS += -Wl,-gc-sections
 

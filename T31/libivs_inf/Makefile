@@ -26,7 +26,7 @@ SAMPLES = sample-personDet
 
 all: $(SAMPLES)
 
-sample-personDet: sample-common.o sample-personDet.o ../../common/musl_shim.o
+sample-personDet: sample-common.o sample-personDet.o ../../ingenic_musl/musl_shim.o
 	$(CC) -o $@ $^ $(LIBS) $(LDFLAG)
 	$(STRIP) $@
 

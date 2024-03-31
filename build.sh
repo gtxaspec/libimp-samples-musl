@@ -13,7 +13,7 @@ if [[ "$1" == "" ]]; then
 	exit 0
 elif [[ "$1" == "--clean" ]]; then
 	MAKE_CMD="make distclean"
-	rm -f common/musl_shim.o
+	rm -f ingenic_musl/musl_shim.o
 elif [[ "$1" == "--make" ]]; then
 	MAKE_CMD="make"
 else

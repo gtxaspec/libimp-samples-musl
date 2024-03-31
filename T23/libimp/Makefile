@@ -20,7 +20,7 @@ LIBS := $(SDK_LIB_DIR)/libimp.so $(SDK_LIB_DIR)/libalog.so
 LDFLAG += -Wl,-gc-sections
 
 COMMON_SRC := sample-common.o
-COMMON_OBJ := $(COMMON_SRC:%.c=%.o) ../../common/musl_shim.o
+COMMON_OBJ := $(COMMON_SRC:%.c=%.o) ../../ingenic_musl/musl_shim.o
 
 SAMPLES_SRC := $(filter-out sample-common.c, $(wildcard *.c))
 SAMPLES_OBJ := $(SAMPLES_SRC:%.c=%.o)

@@ -17,7 +17,7 @@ LIBS := $(SDK_LIB_DIR)/libimp.so $(SDK_LIB_DIR)/libalog.so
 
 LDFLAGS += -Wl,-gc-sections
 
-COMMON_OBJ := sample-common.o ../../common/musl_shim.o
+COMMON_OBJ := sample-common.o ../../ingenic_musl/musl_shim.o
 
 SAMPLES_SRC := $(filter-out sample-common.c sample-Change-Resolution.c sample-Change-Resolution-Common.c, $(wildcard *.c))
 SAMPLES_OBJ := $(SAMPLES_SRC:%.c=%.o)

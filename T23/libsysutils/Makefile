@@ -19,7 +19,7 @@ LIBS := $(SDK_LIB_DIR)/libsysutils.so $(SDK_LIB_DIR)/libalog.so
 
 LDFLAG += -Wl,-gc-sections
 
-COMMON_OBJ := ../../common/musl_shim.o
+COMMON_OBJ := ../../ingenic_musl/musl_shim.o
 
 SAMPLES_SRC := $(filter-out sample-common.c, $(wildcard *.c))
 SAMPLES_OBJ := $(SAMPLES_SRC:%.c=%.o)

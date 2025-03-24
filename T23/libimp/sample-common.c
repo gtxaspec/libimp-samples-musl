@@ -219,7 +219,10 @@ int sample_system_init()
 	}else if(3 == gosd_enable) { /* use ipu osd and isp osd */
 		IMP_OSD_SetPoolSize(512*1024);
 		IMP_ISP_Tuning_SetOsdPoolSize(512 * 1024);
-	}
+	} else {
+		IMP_OSD_SetPoolSize(512*1024);
+		IMP_ISP_Tuning_SetOsdPoolSize(512 * 1024);
+    }
 
 	memset(&sensor_info, 0, sizeof(IMPSensorInfo));
 	memcpy(sensor_info.name, SENSOR_NAME, sizeof(SENSOR_NAME));
@@ -585,14 +588,13 @@ int sample_encoder_init()
                 chnNum = 3 + chn[i].index;
             } else if (chn[i].payloadType == PT_H264) {
                 chnNum = chn[i].index;
-				enc_attr->profile = -1;
                 rc_attr = &channel_attr.rcAttr;
                 rc_attr->outFrmRate.frmRateNum = imp_chn_attr_tmp->outFrmRateNum;
                 rc_attr->outFrmRate.frmRateDen = imp_chn_attr_tmp->outFrmRateDen;
                 rc_attr->maxGop = 2 * rc_attr->outFrmRate.frmRateNum / rc_attr->outFrmRate.frmRateDen;
                 if (S_RC_METHOD == ENC_RC_MODE_CBR) {
                     rc_attr->attrRcMode.rcMode = ENC_RC_MODE_CBR;
-                    rc_attr->attrRcMode.attrH264Cbr.outBitRate = BITRATE_720P_Kbs * (imp_chn_attr_tmp->picWidth * imp_chn_attr_tmp->picHeight) / (1280 * 720);
+                    rc_attr->attrRcMode.attrH264Cbr.outBitRate = BITRATE_720P_Kbs;
                     rc_attr->attrRcMode.attrH264Cbr.maxQp = 45;
                     rc_attr->attrRcMode.attrH264Cbr.minQp = 15;
                     rc_attr->attrRcMode.attrH264Cbr.iBiasLvl = 0;
@@ -613,7 +615,7 @@ int sample_encoder_init()
                     rc_attr->attrRcMode.attrH264Vbr.maxQp = 45;
                     rc_attr->attrRcMode.attrH264Vbr.minQp = 15;
                     rc_attr->attrRcMode.attrH264Vbr.staticTime = 2;
-                    rc_attr->attrRcMode.attrH264Vbr.maxBitRate = BITRATE_720P_Kbs * (imp_chn_attr_tmp->picWidth * imp_chn_attr_tmp->picHeight) / (1280 * 720);
+                    rc_attr->attrRcMode.attrH264Vbr.maxBitRate = BITRATE_720P_Kbs;
                     rc_attr->attrRcMode.attrH264Vbr.iBiasLvl = 0;
                     rc_attr->attrRcMode.attrH264Vbr.changePos = 80;
                     rc_attr->attrRcMode.attrH264Vbr.qualityLvl = 2;
@@ -633,7 +635,7 @@ int sample_encoder_init()
                     rc_attr->attrRcMode.attrH264Smart.maxQp = 45;
                     rc_attr->attrRcMode.attrH264Smart.minQp = 15;
                     rc_attr->attrRcMode.attrH264Smart.staticTime = 2;
-                    rc_attr->attrRcMode.attrH264Smart.maxBitRate = BITRATE_720P_Kbs * (imp_chn_attr_tmp->picWidth * imp_chn_attr_tmp->picHeight) / (1280 * 720);
+                    rc_attr->attrRcMode.attrH264Smart.maxBitRate = BITRATE_720P_Kbs;
                     rc_attr->attrRcMode.attrH264Smart.iBiasLvl = 0;
                     rc_attr->attrRcMode.attrH264Smart.changePos = 80;
                     rc_attr->attrRcMode.attrH264Smart.qualityLvl = 2;
@@ -670,7 +672,7 @@ int sample_encoder_init()
                     rc_attr->attrRcMode.attrH265Cbr.maxQp = 45;
                     rc_attr->attrRcMode.attrH265Cbr.minQp = 15;
                     rc_attr->attrRcMode.attrH265Cbr.staticTime = 2;
-                    rc_attr->attrRcMode.attrH265Cbr.outBitRate = BITRATE_720P_Kbs * (imp_chn_attr_tmp->picWidth * imp_chn_attr_tmp->picHeight) / (1280 * 720);
+                    rc_attr->attrRcMode.attrH265Cbr.outBitRate = BITRATE_720P_Kbs;
                     rc_attr->attrRcMode.attrH265Cbr.iBiasLvl = 0;
                     rc_attr->attrRcMode.attrH265Cbr.frmQPStep = 3;
                     rc_attr->attrRcMode.attrH265Cbr.gopQPStep = 15;
@@ -688,7 +690,7 @@ int sample_encoder_init()
                     rc_attr->attrRcMode.attrH265Vbr.maxQp = 45;
                     rc_attr->attrRcMode.attrH265Vbr.minQp = 15;
                     rc_attr->attrRcMode.attrH265Vbr.staticTime = 2;
-                    rc_attr->attrRcMode.attrH265Vbr.maxBitRate = BITRATE_720P_Kbs * (imp_chn_attr_tmp->picWidth * imp_chn_attr_tmp->picHeight) / (1280 * 720);
+                    rc_attr->attrRcMode.attrH265Vbr.maxBitRate = BITRATE_720P_Kbs;
                     rc_attr->attrRcMode.attrH265Vbr.iBiasLvl = 0;
                     rc_attr->attrRcMode.attrH265Vbr.changePos = 80;
                     rc_attr->attrRcMode.attrH265Vbr.qualityLvl = 2;
@@ -708,7 +710,7 @@ int sample_encoder_init()
                     rc_attr->attrRcMode.attrH265Smart.maxQp = 45;
                     rc_attr->attrRcMode.attrH265Smart.minQp = 15;
                     rc_attr->attrRcMode.attrH265Smart.staticTime = 2;
-                    rc_attr->attrRcMode.attrH265Smart.maxBitRate = BITRATE_720P_Kbs * (imp_chn_attr_tmp->picWidth * imp_chn_attr_tmp->picHeight) / (1280 * 720);
+                    rc_attr->attrRcMode.attrH265Smart.maxBitRate = BITRATE_720P_Kbs;
                     rc_attr->attrRcMode.attrH265Smart.iBiasLvl = 0;
                     rc_attr->attrRcMode.attrH265Smart.changePos = 80;
                     rc_attr->attrRcMode.attrH265Smart.qualityLvl = 2;

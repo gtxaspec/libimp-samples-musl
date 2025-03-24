@@ -16,93 +16,93 @@ extern "C"
 
 /**
  * @file
- * ADC模块头文件
+ * ADC module include header
  */
 
 /**
  * @defgroup Sysutils_ADC
  * @ingroup sysutils
- * @brief 模数转化模块
+ * @brief Analog to digital conversion module
  *
- * 使用方法请参考Samples
+ * Please refer to the use of Samples
  * @{
  */
 
 /**
  * @fn int SU_ADC_Init(void);
  *
- * 初始化ADC模块
+ * ADC module init
  *
- * @retval 0 成功
- * @retval 非0 失败，返回错误码
+ * @retval 0 Success
+ * @retval Non-0 Failure，return error code
  *
- * @remark 使用ADC之前，一定要调用这个函数。
+ * @remark Before using the ADC, be sure to call this function.
  *
- * @attention 无。
+ * @attention None
  */
 int SU_ADC_Init(void);
 
 /**
  * @fn int SU_ADC_Exit(void);
  *
- * 去初始化ADC模块
+ * ADC module deinit
  *
- * @retval 0 成功
- * @retval 非0 失败，返回错误码
+ * @retval 0 Success
+ * @retval Non-0 Failure,return error code
  *
- * @remark 不使用ADC之后，一定要调用这个函数。
+ * @remark After not using ADC,be sure to call this function.
  *
- * @attention 无。
+ * @attention None
  */
 int SU_ADC_Exit(void);
 
 /**
  * @fn int SU_ADC_EnableChn(uint32_t chn_num);
  *
- * 启动通道
+ * Enable an ADC channel
  *
- * @param[in] chn_num 启动第几路通道
+ * @param[in] chn_num The channel number you want to use.
  *
- * @retval 0 成功
- * @retval 非0 失败，返回错误码
+ * @retval 0 Success
+ * @retval Non-0 Failure,retrun error code
  *
- * @remark 无
+ * @remark None
  *
- * @attention 无.
+ * @attention None
  */
 int SU_ADC_EnableChn(uint32_t chn_num);
 
 /**
  * @fn int SU_ADC_DisableChn(uint32_t chn_num);
  *
- * 关闭通道
+ * Disable an ADC channel
  *
- * @param[in] chn_num 停止第几路通道
+ * @param[in] chn_num The channel num you want do stop.
  *
- * @retval 0 成功
- * @retval 非0 失败，返回错误码
+ * @retval 0 Success
+ * @retval Non-0 Failure,return error code.
  *
- * @remark 无
+ * @remark None
  *
- * @attention 无
+ * @attention None
  */
 int SU_ADC_DisableChn(uint32_t chn_num);
 
 /**
  * @fn int SU_ADC_GetChnValue(uint32_t chn_num, int *value);
  *
- * 得到第chn_num通道的ADC值
+ * Get the ADC value of the channel chn_num
  *
- * @param[in] chn_num 第几路通道
+ * @param[in] chn_num The channel number
  *
- * @param[out] value 得到的ADC值
+ * @param[out] value ADC value obtained
  *
- * @retval 0 成功
- * @retval 非0 失败，返回错误码
+ * @retval 0 Success
+ * @retval Non-0 Failure,return error code
  *
- * @remark 无
+ * @remark None
  *
- * @attention 无
+ * @attention None
  */
 int SU_ADC_GetChnValue(uint32_t chn_num, int *value);
 

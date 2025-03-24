@@ -36,9 +36,11 @@ char path[128] = "/mnt/res/64x64_2.rgba";
 char *g_pdata = NULL;
 FILE *g_fp = NULL;
 static int g_main_timehandle = -1;
-static int g_sec_timehandle = -1;
 static int g_main_pichandle = -1;
+#ifdef SECSENSOR
+static int g_sec_timehandle = -1;
 static int g_sec_pichandle = -1;
+#endif
 
 static void update_time(void *p)
 {
@@ -100,7 +102,20 @@ static void update_time(void *p)
 		}
 
 #ifdef SUPPORT_RGB555LE
-
+		IMPIspOsdAttrAsm stISPOSDAsm;
+		stISPOSDAsm.type = ISP_OSD_REG_PIC;
+		stISPOSDAsm.stsinglepicAttr.sensornum = 0;
+		stISPOSDAsm.stsinglepicAttr.chnOSDAttr.osd_type = IMP_ISP_PIC_ARGB_1555;
+		stISPOSDAsm.stsinglepicAttr.chnOSDAttr.osd_argb_type = IMP_ISP_ARGB_TYPE_BGRA;
+		stISPOSDAsm.stsinglepicAttr.chnOSDAttr.osd_pixel_alpha_disable = IMPISP_TUNING_OPS_MODE_DISABLE;
+		stISPOSDAsm.stsinglepicAttr.pic.pinum =  g_main_timehandle;
+		stISPOSDAsm.stsinglepicAttr.pic.osd_enable = 1;
+		stISPOSDAsm.stsinglepicAttr.pic.osd_left = 10;
+		stISPOSDAsm.stsinglepicAttr.pic.osd_top = 10;
+		stISPOSDAsm.stsinglepicAttr.pic.osd_width = OSD_REGION_WIDTH * OSD_LETTER_NUM;
+		stISPOSDAsm.stsinglepicAttr.pic.osd_height = OSD_REGION_HEIGHT;
+		stISPOSDAsm.stsinglepicAttr.pic.osd_image = (char*)data;
+		stISPOSDAsm.stsinglepicAttr.pic.osd_stride = OSD_REGION_WIDTH * OSD_LETTER_NUM * 2;
 #else
 		IMPIspOsdAttrAsm stISPOSDAsm;
 		stISPOSDAsm.type = ISP_OSD_REG_PIC;
@@ -116,8 +131,7 @@ static void update_time(void *p)
 		stISPOSDAsm.stsinglepicAttr.pic.osd_height = OSD_REGION_HEIGHT;
 		stISPOSDAsm.stsinglepicAttr.pic.osd_image = (char*)data;
 		stISPOSDAsm.stsinglepicAttr.pic.osd_stride = OSD_REGION_WIDTH * OSD_LETTER_NUM * 4;
-
-
+#ifdef SECSENSOR
 		IMPIspOsdAttrAsm stISPOSDAsm1;
 		stISPOSDAsm1.type = ISP_OSD_REG_PIC;
 		stISPOSDAsm1.stsinglepicAttr.sensornum = 1;
@@ -133,6 +147,7 @@ static void update_time(void *p)
 		stISPOSDAsm1.stsinglepicAttr.pic.osd_image = (char*)data;
 		stISPOSDAsm1.stsinglepicAttr.pic.osd_stride = OSD_REGION_WIDTH * OSD_LETTER_NUM * 4;
 #endif
+#endif
 
 		ret = IMP_ISP_Tuning_SetOsdRgnAttr(0, g_main_timehandle, &stISPOSDAsm);
 		if(ret < 0) {
@@ -145,7 +160,7 @@ static void update_time(void *p)
 			IMP_LOG_ERR(TAG,"IMP_OSD_ShowRgn_ISP error\n");
 			return ;
 		}
-
+#ifdef SECSENSOR
 		ret = IMP_ISP_Tuning_SetOsdRgnAttr(1, g_sec_timehandle, &stISPOSDAsm1);
 		if(ret < 0) {
 			IMP_LOG_ERR(TAG,"IMP_ISP_SetOSDAttr error\n");
@@ -157,7 +172,7 @@ static void update_time(void *p)
 			IMP_LOG_ERR(TAG,"IMP_OSD_ShowRgn_ISP error\n");
 			return ;
 		}
-
+#endif
 		/*更新时间戳*/
 		sleep(1);
 	}
@@ -224,6 +239,7 @@ void draw_pic(void)
 		return ;
 	}
 
+#ifdef SECSENSOR
 	stISPOSDAsm.type = ISP_OSD_REG_PIC;
 	stISPOSDAsm.stsinglepicAttr.sensornum = 1;
 	stISPOSDAsm.stsinglepicAttr.chnOSDAttr.osd_type = IMP_ISP_PIC_ARGB_8888;
@@ -249,6 +265,7 @@ void draw_pic(void)
 		IMP_LOG_ERR(TAG,"IMP_ISP_Tuning_ShowOsdRgn error\n");
 		return ;
 	}
+#endif
 }
 
 void ISPOSDDraw(IMPOsdRgnType type)
@@ -278,10 +295,12 @@ void ISPOSDDraw(IMPOsdRgnType type)
 			IMP_LOG_ERR(TAG,"[%s][%d]IMP_OSD_SetRgnAttr_ISP err\n",__func__,__LINE__);
 		}
 
+#ifdef SECSENSOR
 		ret = IMP_OSD_SetRgnAttr_ISP_Sec(&rIspOsdAttr, 0);
 		if(ret < 0){
 			IMP_LOG_ERR(TAG,"[%s][%d]IMP_OSD_SetRgnAttr_ISP err\n",__func__,__LINE__);
 		}
+#endif
 	}
 
 	if(OSD_REG_ISP_LINE_RECT == type)
@@ -306,10 +325,12 @@ void ISPOSDDraw(IMPOsdRgnType type)
 			IMP_LOG_ERR(TAG,"[%s][%d]IMP_OSD_SetRgnAttr_ISP err\n",__func__,__LINE__);
 		}
 
+#ifdef SECSENSOR
 		ret = IMP_OSD_SetRgnAttr_ISP_Sec(&rIspOsdAttr, 0);
 		if(ret < 0){
 			IMP_LOG_ERR(TAG,"[%s][%d]IMP_OSD_SetRgnAttr_ISP err\n",__func__,__LINE__);
 		}
+#endif
 	}
 
 	if(OSD_REG_ISP_COVER == type)
@@ -332,10 +353,12 @@ void ISPOSDDraw(IMPOsdRgnType type)
 			IMP_LOG_ERR(TAG,"[%s][%d]IMP_OSD_SetRgnAttr_ISP err\n",__func__,__LINE__);
 		}
 
+#ifdef SECSENSOR
 		ret = IMP_OSD_SetRgnAttr_ISP_Sec(&rIspOsdAttr, 0);
 		if(ret < 0){
 			IMP_LOG_ERR(TAG,"[%s][%d]IMP_OSD_SetRgnAttr_ISP err\n",__func__,__LINE__);
 		}
+#endif
 	}
 
 	return ;
@@ -378,7 +401,7 @@ int sample_osd_init_isp(void)
 		IMP_LOG_ERR(TAG,"[%s][%d]IMP_ISP_Tuning_CreateOsdRgn err\n",__func__,__LINE__);
 		return -1;
 	}
-#if 1
+#ifdef SECSENSOR
 	g_sec_pichandle = IMP_ISP_Tuning_CreateOsdRgn(sensorNum + 1, NULL);
 	if(g_sec_pichandle < 0)
 	{
@@ -405,11 +428,14 @@ int sample_osd_exit_isp()
 	IMP_ISP_Tuning_ShowOsdRgn(sensorNum,g_main_pichandle,showflg);
 	IMP_ISP_Tuning_DestroyOsdRgn(sensorNum,g_main_pichandle);
 
+#ifdef SECSENSOR
 	IMP_ISP_Tuning_ShowOsdRgn(sensorNum+1,g_sec_timehandle,showflg);
 	IMP_ISP_Tuning_DestroyOsdRgn(sensorNum+1,g_sec_timehandle);
 
 	IMP_ISP_Tuning_ShowOsdRgn(sensorNum + 1,g_sec_pichandle,showflg);
 	IMP_ISP_Tuning_DestroyOsdRgn(sensorNum + 1,g_sec_pichandle);
+#endif
+
 	return ret;
 }
 
@@ -420,6 +446,10 @@ int main(int argc, char *argv[])
     if (argc >= 2) {
         byGetFd = atoi(argv[1]);
     }
+
+#ifdef SECSENSOR
+	chn[3].enable = 1;
+#endif
 
     gosd_enable = 2;
 	/* Step.1 System init */
@@ -530,6 +560,16 @@ int main(int argc, char *argv[])
 	if (ret < 0) {
 		IMP_LOG_ERR(TAG, "Encoder exit failed\n");
 		return -1;
+	}
+
+	for (i = 0; i < FS_CHN_NUM; i++) {
+		if (chn[i].enable) {
+			ret = IMP_Encoder_DestroyGroup(chn[i].index);
+			if (ret < 0) {
+				IMP_LOG_ERR(TAG, "IMP_Encoder_CreateGroup(%d) error !\n", chn[i].index);
+				return -1;
+			}
+		}
 	}
 
 	/* Step.10 FrameSource exit */

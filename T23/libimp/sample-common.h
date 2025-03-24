@@ -23,8 +23,8 @@ extern "C"
 #define SENSOR_FRAME_RATE_NUM		25
 #define SENSOR_FRAME_RATE_DEN		1
 
-#define SENSOR_GC2053
-#define SECSENSOR
+#define SENSOR_SC2336
+//#define SECSENSOR
 
 #if defined SENSOR_AR0141
 #define SENSOR_NAME				"ar0141"
@@ -36,6 +36,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_OV7725
 #define SENSOR_NAME				"ov7725"
@@ -47,6 +48,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					0
 #elif defined SENSOR_OV9732
 #define SENSOR_NAME				"ov9732"
@@ -58,6 +60,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_OV9750
 #define SENSOR_NAME				"ov9750"
@@ -69,6 +72,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_OV9712
 #define SENSOR_NAME				"ov9712"
@@ -80,6 +84,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_GC1004
 #define SENSOR_NAME				"gc1004"
@@ -91,6 +96,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_JXH42
 #define SENSOR_NAME				"jxh42"
@@ -102,6 +108,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_SC1035
 #define SENSOR_NAME				"sc1035"
@@ -113,6 +120,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_OV2710
 #define SENSOR_NAME				"ov2710"
@@ -124,6 +132,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_OV2735
 #define SENSOR_NAME				"ov2735"
@@ -135,6 +144,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_OV2735B
 #define SENSOR_NAME				"ov2735b"
@@ -146,6 +156,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_SC2135
 #define SENSOR_NAME				"sc2135"
@@ -157,6 +168,19 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
+#define CROP_EN					1
+#elif defined SENSOR_SC2336
+#define SENSOR_NAME				"sc2336"
+#define SENSOR_CUBS_TYPE        TX_SENSOR_CONTROL_INTERFACE_I2C
+#define SENSOR_I2C_ADDR			0x30
+#define SENSOR_I2C_ADAPTER_ID   0
+#define SENSOR_WIDTH			1920
+#define SENSOR_HEIGHT			1080
+#define CHN0_EN                 1
+#define CHN1_EN                 0
+#define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_JXF22
 #define SENSOR_NAME				"jxf22"
@@ -168,6 +192,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_JXF23
 #define SENSOR_NAME				"jxf23"
@@ -179,6 +204,7 @@ extern "C"
 #define CHN0_EN                 0
 #define CHN1_EN                 1
 #define CHN2_EN                 0
+#define CHN3_EN                 0
 #define CROP_EN                 0
 #elif defined SENSOR_JXF28
 #define SENSOR_NAME				"jxf28"
@@ -190,6 +216,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN					1
 #elif defined SENSOR_SC2310
 #define SENSOR_NAME             "sc2310"
@@ -201,6 +228,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 0
+#define CHN3_EN                 0
 #define CROP_EN                 0
 #elif defined SENSOR_GC2063
 #define SENSOR_NAME             "gc2063"
@@ -212,20 +240,21 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 0
+#define CHN3_EN                 0
 #define CROP_EN                 0
 #elif defined SENSOR_GC2053
 #define SENSOR_NAME             "gc2053"
-#define SENSOR_NAMES1             "gc2053s1"
+#define SENSOR_NAMES1           "gc2053s1"
 #define SENSOR_CUBS_TYPE        TX_SENSOR_CONTROL_INTERFACE_I2C
 #define SENSOR_I2C_ADDR         0x37
-#define SENSOR_I2C_ADDRS1         0x3f
+#define SENSOR_I2C_ADDRS1       0x3f
 #define SENSOR_I2C_ADAPTER_ID   0
 #define SENSOR_WIDTH            1920
 #define SENSOR_HEIGHT           1080
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN					0
-#define CHN3_EN                 1
+#define CHN3_EN                 0
 #define CROP_EN                 0
 #elif defined SENSOR_IMX327
 #define SENSOR_NAME             "imx327"
@@ -237,6 +266,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 0
+#define CHN3_EN                 0
 #define CROP_EN                 0
 #elif defined SENSOR_JXF37
 #define SENSOR_NAME             "jxf37"
@@ -248,6 +278,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 0
+#define CHN3_EN                 0
 #define CROP_EN                 0
 #elif defined SENSOR_SC200AI
 #define SENSOR_NAME             "sc200ai"
@@ -259,6 +290,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 0
+#define CHN3_EN                 0
 #define CROP_EN                 0
 #elif defined SENSOR_SC301IoT
 #define SENSOR_NAME             "sc301IoT"
@@ -270,6 +302,7 @@ extern "C"
 #define CHN0_EN                 1
 #define CHN1_EN                 0
 #define CHN2_EN                 0
+#define CHN3_EN                 0
 #define CROP_EN                 0
 #endif
 

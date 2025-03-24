@@ -360,6 +360,16 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
+	for (i = 0; i < FS_CHN_NUM; i++) {
+		if (chn[i].enable) {
+			ret = IMP_Encoder_DestroyGroup(chn[i].index);
+			if (ret < 0) {
+				IMP_LOG_ERR(TAG, "IMP_Encoder_CreateGroup(%d) error !\n", i);
+				return -1;
+			}
+		}
+	}
+
 	/* Step.16 FrameSource exit */
 	ret = sample_framesource_exit();
 	if (ret < 0) {

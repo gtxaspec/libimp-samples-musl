@@ -18,7 +18,7 @@ extern "C"
 
 /**
  * @file
- * Sysutils 基础功能头文件
+ * Sysutils Basic Functions header files
  */
 
 /**
@@ -28,303 +28,303 @@ extern "C"
 /**
  * @defgroup Sysutils_Base
  * @ingroup sysutils
- * @brief 系统基础功能. 
+ * @brief System Basic Functions. 
  * @{
  */
 
 /**
- * 设备ID逻辑编码
+ * Magic device ID
  */
 #define DEVICE_ID_MAGIC     "53ef"
 
 /**
- * 设备ID逻辑编码长度
+ * Length of magic device ID 
  */
 #define DEVICE_ID_MAGIC_LEN 4
 
 /**
- * 设备ID长度
+ * Length of device ID
  */
 #define DEVICE_ID_LEN       32
 
 /**
- * 设备型号\设备ID\固件版本信息的最大长度
+ * Maxnum length of Device model,Device ID and Firmware version
  */
 #define MAX_INFO_LEN        64
 
 /**
- * 设备型号.
+ * Device Model
  */
 typedef struct {
-	char chr[MAX_INFO_LEN];		/**< 设备型号字符串 */
+	char chr[MAX_INFO_LEN];		/**< Device Model strings */
 } SUModelNum;
 
 /**
- * 设备软件版本.
+ * Device software version
  */
 typedef struct {
-	char chr[MAX_INFO_LEN];		/**< 设备软件版本字符串 */
+	char chr[MAX_INFO_LEN];		/**< Device software version strings*/
 } SUVersion;
 
 /**
- * 设备ID.设备ID为唯一值，不同的CPU芯片间的值有差异
+ * Device ID. Device ID is a unique value, different values between the CPU chip differences
  */
 typedef union {
-	char chr[MAX_INFO_LEN];		/**< 设备ID字符串 */
-	uint8_t hex[MAX_INFO_LEN];	/**< 设备ID二进制 */
+	char chr[MAX_INFO_LEN];		/**< Device ID in string */
+	uint8_t hex[MAX_INFO_LEN];	/**< Device ID in binary */
 } SUDevID;
 
 /**
- * 系统时间结构体.
+ * System time structure
  */
 typedef struct {
-	int sec;	/**< 秒数，范围：0~59 */
-	int min;	/**< 分钟数，范围：0~59 */
-	int hour;	/**< 小时数，范围：0~23 */
-	int mday;	/**< 一个月中的第几天，范围：1~31 */
-	int mon;	/**< 月份，范围：1~12 */
-	int year;	/**< 年份，范围：>1900 */
+	int sec;	/**< Second,Range：0~59 */
+	int min;	/**< Minute,Range：0~59 */
+	int hour;	/**< Hour,Range：0~23 */
+	int mday;	/**< Day,Range：1~31 */
+	int mon;	/**< Month,Range：1~12 */
+	int year;	/**< Year,Range：>1900 */
 } SUTime;
 
 /**
  * @fn int SU_Base_GetModelNumber(SUModelNum *modelNum)
  *
- * 获取设备型号.
+ * Get device model.
  *
- * @param[out] modelNum 设备型号结构体指针.
+ * @param[out] modelNum Device model structure pointer.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 无.
+ * @remarks None.
  *
- * @attention 无.
+ * @attention None.
  */
 int SU_Base_GetModelNumber(SUModelNum *modelNum);
 
 /**
  * @fn int SU_Base_GetVersion(SUVersion *version)
  *
- * 获取设备版本.
+ * Get device version.
  *
- * @param[out] version 设备版本结构体指针.
+ * @param[out] version Device version structure pointer.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 无.
+ * @remarks None.
  *
- * @attention 无.
+ * @attention None.
  */
 int SU_Base_GetVersion(SUVersion *version);
 
 /**
  * @fn int SU_Base_GetDevID(SUDevID *devID)
  *
- * 获取设备ID.
+ * Get device ID.
  *
- * @param[out] devID 设备ID结构体指针.
+ * @param[out] devID Device ID structure pointer.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 每颗CPU芯片的设备ID是唯一的.
+ * @remarks The device ID of each CPU is unique.
  *
- * @attention 无.
+ * @attention None.
  */
 int SU_Base_GetDevID(SUDevID *devID);
 
 /**
  * @fn int SU_Base_GetTime(SUTime *time)
  *
- * 获得系统时间.
+ * Get system time.
  *
- * @param[in] time 系统时间结构体指针.
+ * @param[in] time System time structure pointer.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 无.
+ * @remarks None.
  *
- * @attention 无.
+ * @attention None.
  */
 int SU_Base_GetTime(SUTime *time);
 
 /**
  * @fn int SU_Base_SetTime(SUTime *time)
  *
- * 设置系统时间.
+ * Set system time.
  *
- * @param[out] time 系统时间结构体指针.
+ * @param[out] time System time structure pointer.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 无.
+ * @remarks None.
  *
- * @attention 系统时间参数需在合理范围，否则函数调用失败.
+ * @attention System time parameters should be in a reasonable range, otherwise the function will call failure.
  */
 int SU_Base_SetTime(SUTime *time);
 
 /**
  * @fn int SU_Base_SUTime2Raw(SUTime *suTime, uint32_t *rawTime)
  *
- * 将SUTime类型的时间转换为以秒为单位的Raw时间.
+ * Converts the time of the SUTime type to Raw time in seconds..
  *
- * @param[in] suTime 系统时间结构体指针.
- * @param[out] rawTime Raw时间(从1970-01-01 00:00:00开始算起).
+ * @param[in] suTime System time structure pointer.
+ * @param[out] rawTime Raw time(Count from the date 1970-01-01 00:00:00).
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 此函数可以用在设置相对秒数的Alarm.
+ * @remarks This function can be used to set the relative number of seconds alarm.
  *
- * @attention 无.
+ * @attention None.
  */
 int SU_Base_SUTime2Raw(SUTime *suTime, uint32_t *rawTime);
 
 /**
  * @fn int SU_Base_Raw2SUTime(uint32_t *rawTime, SUTime *suTime)
  *
- * 将以秒为单位的Raw时间转换为SUTime类型的时间.
+ * Converts the time of the  Raw time in seconds to SUTime type.
  *
- * @param[in] rawTime Raw时间(从1970-01-01 00:00:00开始算起).
- * @param[out] suTime 系统时间结构体指针.
+ * @param[in] rawTime Raw time(Count from time 1970-01-01 00:00:00).
+ * @param[out] suTime System time structure pointer.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 此函数可以用在设置相对秒数的Alarm.
+ * @remarks This function can be used to set the relative number of seconds alarm.
  *
- * @attention 无.
+ * @attention None.
  */
 int SU_Base_Raw2SUTime(uint32_t *rawTime, SUTime *suTime);
 
 /**
  * @fn int SU_Base_SetAlarm(SUTime *time)
  *
- * 设定闹钟时间.
+ * Set Alarm time.
  *
- * @param[in] time 系统时间结构体指针.
+ * @param[in] time System time structure pointer.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 暂支持24小时内的闹钟设定.
+ * @remarks Temporarily support alarm time setting within 24 hours.
  *
- * @attention 系统时间参数需在合理范围，否则函数调用失败.
+ * @attention System time structure parameters should be in a reasonable time Range, otherwise the function call Failure.
  */
 int SU_Base_SetAlarm(SUTime *time);
 
 /**
  * @fn int SU_Base_GetAlarm(SUTime *time)
  *
- * 获得闹钟定时时间.
+ * Get the current Alarm time.
  *
- * @param[out] time 系统时间结构体指针.
+ * @param[out] time .
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 无.
+ * @remarks None.
  *
- * @attention 无.
+ * @attention None.
  */
 int SU_Base_GetAlarm(SUTime *time);
 
 /**
  * @fn int SU_Base_EnableAlarm()
  *
- * 使能闹钟.
+ * Enable Alarm.
  *
- * @param 无.
+ * @param None.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 调用该函数之前，请调用SU_Base_GetAlarm（SUTime *time）设定闹钟时间.
+ * @remarks Before calling this function, please call SU_Base_GetAlarm (SUTime * time) to set the alarm time.
  *
- * @attention 如果闹钟时间在当前系统时间之前返回失败.
+ * @attention If alarm time before the current system time ,this function will return failure.
  */
 int SU_Base_EnableAlarm(void);
 
 /**
  * @fn int SU_Base_DisableAlarm()
  *
- * 关闭闹钟.
+ * Disable Alarm.
  *
- * @param 无.
+ * @param None.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 无.
+ * @remarks None.
  *
- * @attention 无.
+ * @attention None.
  */
 int SU_Base_DisableAlarm(void);
 
 /**
  * @fn int SU_Base_PollingAlarm(uint32_t timeoutMsec)
  *
- * 等待闹钟.
+ * Wait Alarm.
  *
- * @param[in] 超时时间，单位：毫秒.
+ * @param[in] timeout,unit：ms.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 调用该函数后，程序会进入阻塞状态，一直到闹钟响应退出或超时退出.
+ * @remarks After calling this function, the program will enter the blocked state until the alarm response or timeout Exit.
  *
- * @attention 无.
+ * @attention None.
  */
 int SU_Base_PollingAlarm(uint32_t timeoutMsec);
 
 /**
  * @fn int SU_Base_Shutdown(void)
  *
- * 设备关机.
+ * Shutdown device.
  *
- * @param 无.
+ * @param None.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 调用该函数后设备会立即关机并关闭主电源.
+ * @remarks After calling this function the device will shut down immediately and turn off the main power.
  *
- * @attention 在调用此函数之前请确保已保存所有文件.
+ * @attention Before calling this function make sure that all files have been saved.
  */
 int SU_Base_Shutdown(void);
 
 /**
  * @fn int SU_Base_Reboot(void)
  *
- * 设备重启.
+ * Reboot device.
  *
- * @param 无.
+ * @param None.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 调用该函数后设备会立即重启.
+ * @remarks  The device will immediately reboot after calling this function.
  *
- * @attention 在调用此函数之前请确保已保存所有文件.
+ * @attention Before calling this function make sure that all files have been saved.
  */
 int SU_Base_Reboot(void);
 
 /**
  * @fn int SU_Base_Suspend(void)
  *
- * 设备休眠.
+ * Suspend device.
  *
- * @param 无.
+ * @param None.
  *
- * @retval 0 成功.
- * @retval 非0 失败.
+ * @retval 0 Success.
+ * @retval Non-0 Failure.
  *
- * @remarks 调用该函数后设备会立即进入休眠,函数正常退出后说明系统已经唤醒.
+ * @remarks After calling this function the device will immediately enter suspend ,when the function exits normally indicates that the system wake.
  *
- * @attention 无.
+ * @attention None.
  */
 int SU_Base_Suspend();
 

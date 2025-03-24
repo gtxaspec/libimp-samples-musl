@@ -75,8 +75,8 @@ static int sample_ivs_move_start(int grp_num, int chn_num, IMPIVSInterface **int
 	int i = 0, j = 0;
 	memset(&param, 0, sizeof(IMP_IVS_MoveParam));
 	param.skipFrameCnt = 1;
-	param.frameInfo.width = SENSOR_WIDTH_SECOND;
-	param.frameInfo.height = SENSOR_HEIGHT_SECOND;
+	param.frameInfo.width = FIRST_SENSOR_WIDTH_SECOND;
+	param.frameInfo.height = FIRST_SENSOR_HEIGHT_SECOND;
 	param.roiRectCnt = 1;
 	for(i=0; i<param.roiRectCnt; i++){
 	  param.sense[i] = 4;

@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 
 	ret = sample_get_jpeg_snap();
 	if (ret < 0) {
-		IMP_LOG_ERR(TAG, "Get H264 stream failed\n");
+		IMP_LOG_ERR(TAG, "Get jpeg stream failed\n");
 		return -1;
 	}
 
@@ -135,6 +135,16 @@ int main(int argc, char *argv[])
 	if (ret < 0) {
 		IMP_LOG_ERR(TAG, "Encoder exit failed\n");
 		return -1;
+	}
+
+	for (i = 0; i < FS_CHN_NUM; i++) {
+		if (chn[i].enable) {
+			ret = IMP_Encoder_DestroyGroup(chn[i].index);
+			if (ret < 0) {
+				IMP_LOG_ERR(TAG, "IMP_Encoder_CreateGroup(%d) error !\n", i);
+				return -1;
+			}
+		}
 	}
 
 	/* Step.d FrameSource exit */
